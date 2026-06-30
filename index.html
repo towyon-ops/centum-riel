@@ -172,6 +172,11 @@
 
   /* ─── FUTURE HOBBIES ─── */
   .future { background: var(--charcoal); }
+  
+  /* [수정 추가] 지도 이미지를 감싸고 예쁘게 표현하기 위한 CSS 스타일 */
+  .map-container { width: 100%; max-width: 720px; margin: 40px 0; border: 1px solid rgba(184,150,90,.2); overflow: hidden; background: #000; }
+  .map-image { width: 100%; height: auto; display: block; }
+  
   .future-list { display: flex; flex-direction: column; gap: 0; margin-top: 56px; }
   .future-item {
     display: grid; grid-template-columns: 120px 1fr; gap: 32px; align-items: start;
@@ -217,8 +222,6 @@
   }
   .comm-item:hover { border-color: rgba(184,150,90,.4); }
   .comm-img-wrap { width: 100%; aspect-ratio: 16/10; overflow: hidden; background: #000; }
-  
-  /* [CSS 추가] 이미지가 영역 안에 꽉 차고 깔끔하게 비율을 유지하도록 설정했습니다. */
   .comm-image { width: 100%; height: 100%; object-fit: cover; transition: transform .3s; }
   .comm-item:hover .comm-image { transform: scale(1.05); }
   .comm-name { padding: 16px; font-size: 14px; color: rgba(245,240,232,.8); font-weight: 500; border-top: 1px solid rgba(184,150,90,.1); }
@@ -249,13 +252,31 @@
   .form-subtitle { font-size: 13px; color: var(--text-dim); margin-bottom: 36px; }
   .form-group { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
   .form-group label { font-size: 11px; letter-spacing: .25em; color: var(--gold); text-transform: uppercase; }
+  
   .form-group input,
-  .form-group select,
   .form-group textarea {
     background: rgba(255,255,255,.04); border: 1px solid rgba(184,150,90,.25);
     color: var(--warm-wh); padding: 13px 16px; font-size: 14px; font-family: var(--sans);
     border-radius: 2px; outline: none; transition: border-color .2s; width: 100%;
   }
+
+  /* [수정 완료] 관심평형 select 요소의 바탕색과 글씨색이 컴퓨터(크롬 등)에서도 완벽하게 구별되도록 명시했습니다. */
+  .form-group select {
+    background-color: #222222; /* 확실하게 구별되는 어두운 회색 바탕 */
+    border: 1px solid rgba(184,150,90,.35);
+    color: #F5F0E8; /* 연한 아이보리 실버 글씨색 */
+    padding: 13px 16px; font-size: 14px; font-family: var(--sans);
+    border-radius: 2px; outline: none; transition: border-color .2s; width: 100%;
+    -webkit-appearance: none; -moz-appearance: none; appearance: none; /* 브라우저 기본 스타일 초기화 */
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 4 4'><path fill='%23B8965A' d='M0 1h4L2 3z'/></svg>"); /* 셀렉트 우측 화살표 디자인 추가 */
+    background-repeat: no-repeat; background-position: right 16px center; background-size: 10px;
+  }
+  /* 드롭다운 옵션 내부 글자색도 강제 고정 */
+  .form-group select option {
+    background-color: #222222;
+    color: #F5F0E8;
+  }
+
   .form-group input:focus,
   .form-group select:focus,
   .form-group textarea:focus { border-color: var(--gold); }
@@ -504,11 +525,16 @@
 
 <!-- ── FUTURE HORACE ── -->
 <section class="future" id="future">
-  <p class="section-eyebrow reveal">개발 호재</p>
+  <p class="section-eyebrow reveal">开发 호재</p>
   <h2 class="section-title reveal">입주 전부터<br><strong>호재가 완성됩니다</strong></h2>
   <div class="gold-rule reveal"></div>
   <p class="section-desc reveal">르엘 리버파크 센텀 주변의 굵직한 인프라 개발이 입주 시점에 맞춰 집중됩니다. 2030년 입주 때는 지금과 전혀 다른 주거환경이 완성될 것입니다.</p>
-('map.png')
+
+  <!-- [수정 완료] 기존에 글자로만 적혀 있던 ('map.png')를 정상적인 이미지 태그로 교체했습니다. -->
+  <div class="map-container reveal">
+    <img src="map.png" class="map-image" alt="르엘 리버파크 센텀 입지도 및 호재 안내">
+  </div>
+
   <div class="future-list">
     <div class="future-item reveal">
       <div class="future-year">2026</div>
@@ -605,7 +631,6 @@
   <h2 class="section-title reveal">호텔을 능가하는<br><strong>르엘 프리미엄 커뮤니티</strong></h2>
   <div class="gold-rule reveal"></div>
   
-  <!-- [수정완료] 이미지 파일 확장자를 실 저장소에 맞춰 전부 .png 로 수정했습니다. -->
   <div class="comm-grid">
     <div class="comm-item reveal">
       <div class="comm-img-wrap"><img src="pool.png" class="comm-image" alt="리버뷰 아쿠아풀"></div>
@@ -654,6 +679,8 @@
           <input type="tel" name="연락처" placeholder="010-0000-0000" required>
         </div>
       </div>
+      
+      <!-- [수정 완료] 관심평형 드롭다운 select 박스 색상 대비 보완 완료 -->
       <div class="form-group">
         <label>관심 평형</label>
         <select name="관심평형">
@@ -665,10 +692,19 @@
           <option value="100평 펜트하우스 (전용 244㎡)">100평 펜트하우스 (전용 244㎡)</option>
         </select>
       </div>
-      <div class="form-group">
-        <label>방문 희망 일시</label>
-        <input type="text" name="방문희망일시" placeholder="예) 7월 15일 오후 2시">
+      
+      <!-- [수정 완료] 기존의 '방문 희망 일시' 칸을 날짜와 시간 두 개로 나누었습니다. -->
+      <div class="form-row">
+        <div class="form-group">
+          <label>방문 희망 날짜</label>
+          <input type="text" name="방문희망날짜" placeholder="예) 7월 15일" required>
+        </div>
+        <div class="form-group">
+          <label>방문 희망 시간</label>
+          <input type="text" name="방문희망시간" placeholder="예) 오후 2시" required>
+        </div>
       </div>
+      
       <div class="form-group">
         <label>기타 문의사항</label>
         <textarea name="기타문의사항" placeholder="문의사항을 입력해주세요"></textarea>
@@ -693,7 +729,6 @@
     ※ 본 홈페이지에 표기된 단지 이미지, 투시도, 조감도, 평면도 등은 소비자의 이해를 돕기 위한 것으로 실제와 다를 수 있습니다.<br>
     ※ 본 광고물은 입주자 모집 공고 이전에 제작된 자료로, 실제 청약 시에는 입주자 모집 공고문을 반드시 확인하시기 바랍니다.<br>
     ※ 본 단지는 비규제지역 민간택지 분양가상한제 미적용 주택입니다.<br>
-    <!-- 2026년 기준 일정 정보 유지 -->
     ※ 입주예정일 2030년 6월은 공정에 따라 변동될 수 있습니다.
   </p>
 </footer>
