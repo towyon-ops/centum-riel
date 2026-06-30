@@ -67,7 +67,7 @@
   }
   .hero-content {
     position: relative; z-index: 2;
-    padding: 0 clamp(20px,6vw,80px) clamp(60px,8vh,100px);
+    padding: 120px clamp(20px,6vw,80px) clamp(60px,8vh,100px);
   }
   .hero-eyebrow {
     font-size: 11px; letter-spacing: .4em; color: var(--gold); font-weight: 500;
@@ -83,7 +83,7 @@
     font-weight: 300; margin-bottom: 48px; letter-spacing: .05em;
   }
   .hero-specs {
-    display: flex; flex-wrap: wrap; gap: 32px; margin-bottom: 48px;
+    display: flex; flex-wrap: wrap; gap: 32px; margin-bottom: 36px;
   }
   .hero-spec-item { display: flex; flex-direction: column; gap: 4px; }
   .hero-spec-label { font-size: 10px; letter-spacing: .3em; color: var(--text-dim); text-transform: uppercase; }
@@ -175,7 +175,7 @@
   /* ─── FUTURE HOBBIES ─── */
   .future { background: var(--charcoal); }
   
-  /* [수정 추가] 지도 이미지를 감싸고 예쁘게 표현하기 위한 CSS 스타일 */
+  /* 지도 이미지 관리 */
   .map-container { width: 100%; max-width: 720px; margin: 40px 0; border: 1px solid rgba(184,150,90,.2); overflow: hidden; background: #000; }
   .map-image { width: 100%; height: auto; display: block; }
   
@@ -247,48 +247,60 @@
     background: var(--charcoal); border: 1px solid rgba(184,150,90,.25);
     padding: clamp(36px,6vw,72px); max-width: 640px; margin: 56px auto 0;
   }
+  .hero-form-wrap {
+    background: rgba(26,26,26,.85); border: 1px solid rgba(184,150,90,.35);
+    padding: 24px; max-width: 580px; margin: 24px 0 28px 0; backdrop-filter: blur(8px);
+  }
   .form-title {
     font-family: var(--serif); font-size: 24px; color: var(--warm-wh); font-weight: 300;
     margin-bottom: 8px;
   }
   .form-subtitle { font-size: 13px; color: var(--text-dim); margin-bottom: 36px; }
+  .hero-form-subtitle { font-size: 12px; color: var(--gold-lt); margin-bottom: 20px; }
   .form-group { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
+  .hero-form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
   .form-group label { font-size: 11px; letter-spacing: .25em; color: var(--gold); text-transform: uppercase; }
   
   .form-group input,
-  .form-group textarea {
+  .form-group textarea,
+  .hero-form-group input {
     background: rgba(255,255,255,.04); border: 1px solid rgba(184,150,90,.25);
     color: var(--warm-wh); padding: 13px 16px; font-size: 14px; font-family: var(--sans);
     border-radius: 2px; outline: none; transition: border-color .2s; width: 100%;
   }
+  .hero-form-group input, .hero-form-group select { padding: 11px 14px; font-size: 13.5px; }
 
-  /* [수정 완료] 관심평형 select 요소의 바탕색과 글씨색이 컴퓨터(크롬 등)에서도 완벽하게 구별되도록 명시했습니다. */
-  .form-group select {
-    background-color: #222222; /* 확실하게 구별되는 어두운 회색 바탕 */
+  .form-group select,
+  .hero-form-group select {
+    background-color: #222222;
     border: 1px solid rgba(184,150,90,.35);
-    color: #F5F0E8; /* 연한 아이보리 실버 글씨색 */
+    color: #F5F0E8;
     padding: 13px 16px; font-size: 14px; font-family: var(--sans);
     border-radius: 2px; outline: none; transition: border-color .2s; width: 100%;
-    -webkit-appearance: none; -moz-appearance: none; appearance: none; /* 브라우저 기본 스타일 초기화 */
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 4 4'><path fill='%23B8965A' d='M0 1h4L2 3z'/></svg>"); /* 셀렉트 우측 화살표 디자인 추가 */
+    -webkit-appearance: none; -moz-appearance: none; appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 4 4'><path fill='%23B8965A' d='M0 1h4L2 3z'/></svg>");
     background-repeat: no-repeat; background-position: right 16px center; background-size: 10px;
   }
-  /* 드롭다운 옵션 내부 글자색도 강제 고정 */
-  .form-group select option {
+  .form-group select option,
+  .hero-form-group select option {
     background-color: #222222;
     color: #F5F0E8;
   }
 
   .form-group input:focus,
   .form-group select:focus,
-  .form-group textarea:focus { border-color: var(--gold); }
+  .form-group textarea:focus,
+  .hero-form-group input:focus,
+  .hero-form-group select:focus { border-color: var(--gold); }
   .form-group textarea { resize: vertical; min-height: 80px; }
   .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .hero-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
   .form-submit {
     width: 100%; padding: 18px; background: var(--gold); color: var(--black);
     font-size: 15px; font-weight: 700; letter-spacing: .15em; border: none; cursor: pointer;
     border-radius: 2px; transition: background .2s, transform .15s; margin-top: 8px;
   }
+  .hero-form-submit { padding: 14px; font-size: 14px; margin-top: 4px; }
   .form-submit:hover { background: var(--gold-lt); transform: translateY(-1px); }
   .privacy-note { font-size: 11px; color: var(--text-dim); text-align: center; margin-top: 16px; line-height: 1.6; }
 
@@ -344,7 +356,7 @@
   /* ─── MOBILE ─── */
   @media (max-width: 640px) {
     .overview-grid { grid-template-columns: 1fr; }
-    .form-row { grid-template-columns: 1fr; }
+    .form-row, .hero-form-row { grid-template-columns: 1fr; }
     .nav-links { display: none; }
     .future-item { grid-template-columns: 80px 1fr; gap: 16px; }
     .hero-specs { gap: 20px; }
@@ -380,6 +392,8 @@
     <p class="hero-eyebrow">해운대 센텀시티 · 부산 최초 르엘</p>
     <h1 class="hero-title">르엘<br><strong>리버파크 센텀</strong></h1>
     <p class="hero-sub">수영강이 내려다보이는 67층의 하이엔드 주거</p>
+    
+    <!-- 주요 스펙 안내 -->
     <div class="hero-specs">
       <div class="hero-spec-item">
         <span class="hero-spec-label">위치</span>
@@ -398,9 +412,51 @@
         <span class="hero-spec-val">2030년 6월</span>
       </div>
     </div>
+    
+    <!-- 복제된 방문예약 폼 (입주예정 2030년 6월 바로 밑 배치) -->
+    <div class="hero-form-wrap">
+      <div class="form-title" style="font-size:18px;">빠른 방문예약 신청</div>
+      <div class="hero-form-subtitle">접수 후 담당 직원이 예약 확정 안내 연락을 드립니다.</div>
+      <form action="https://formspree.io/f/mgojleoe" method="POST">
+        <div class="hero-form-row">
+          <div class="hero-form-group">
+            <label>성함</label>
+            <input type="text" name="상단_고객성함" placeholder="홍길동" required>
+          </div>
+          <div class="hero-form-group">
+            <label>연락처</label>
+            <input type="tel" name="상단_연락처" placeholder="010-0000-0000" required>
+          </div>
+        </div>
+        <div class="hero-form-group">
+          <label>관심 평형</label>
+          <select name="상단_관심평형">
+            <option value="">관심 평형을 선택해주세요</option>
+            <option value="34평 (전용 84㎡)">34평 (전용 84㎡)</option>
+            <option value="42평 (전용 104㎡)">42평 (전용 104㎡)</option>
+            <option value="51평 (전용 125㎡)">51평 (전용 125㎡)</option>
+            <option value="62평 (전용 154㎡)">62평 (전용 154㎡)</option>
+            <option value="100평 펜트하우스 (전용 244㎡)">100평 펜트하우스 (전용 244㎡)</option>
+          </select>
+        </div>
+        <div class="hero-form-row">
+          <div class="hero-form-group">
+            <label>방문 희망 날짜</label>
+            <input type="text" name="상단_방문희망날짜" placeholder="예) 7월 15일" required>
+          </div>
+          <div class="hero-form-group">
+            <label>방문 희망 시간</label>
+            <input type="text" name="상단_방문희망시간" placeholder="예) 오후 2시" required>
+          </div>
+        </div>
+        <button type="submit" class="form-submit hero-form-submit">방문예약 무료 신청</button>
+      </form>
+    </div>
+
+    <!-- 기존 하단 버튼 라인 -->
     <div class="hero-cta-row">
       <a class="btn-primary" href="tel:16884018">☎ 1688-4018 전화문의</a>
-      <a class="btn-outline" href="#reservation">방문예약 신청</a>
+      <a class="btn-outline" href="#reservation">방문예약 안내</a>
     </div>
   </div>
   <div class="scroll-hint">
@@ -532,7 +588,6 @@
   <div class="gold-rule reveal"></div>
   <p class="section-desc reveal">르엘 리버파크 센텀 주변의 굵직한 인프라 개발이 입주 시점에 맞춰 집중됩니다. 2030년 입주 때는 지금과 전혀 다른 주거환경이 완성될 것입니다.</p>
 
-  <!-- [수정 완료] 기존에 글자로만 적혀 있던 ('map.png')를 정상적인 이미지 태그로 교체했습니다. -->
   <div class="map-container reveal">
     <img src="map.png" class="map-image" alt="르엘 리버파크 센텀 입지도 및 호재 안내">
   </div>
@@ -682,7 +737,6 @@
         </div>
       </div>
       
-      <!-- [수정 완료] 관심평형 드롭다운 select 박스 색상 대비 보완 완료 -->
       <div class="form-group">
         <label>관심 평형</label>
         <select name="관심평형">
@@ -695,7 +749,6 @@
         </select>
       </div>
       
-      <!-- [수정 완료] 기존의 '방문 희망 일시' 칸을 날짜와 시간 두 개로 나누었습니다. -->
       <div class="form-row">
         <div class="form-group">
           <label>방문 희망 날짜</label>
